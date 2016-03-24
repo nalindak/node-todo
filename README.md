@@ -6,6 +6,11 @@ Demo Node ToDo App
 ```bash
 npm install
 ```
+### Starting application
+
+```bash
+npm start
+```
 
 ### Actions
 
