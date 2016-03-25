@@ -4,6 +4,6 @@ module.exports = {
 
     getDbConnectionString: function () {
         return 'mongodb://' + configValues.uname +
-        ':' + configValues.pwd + '@ds025239.mlab.com:25239/node-todo';
+        ':' + configValues.pwd + '@' + configValues.dbname;
     }
 };
