@@ -14,7 +14,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/api/todos/:id', function (req, res) {
+    app.get('/api/todo/:id', function (req, res) {
 
         Todos.findById({ _id: req.params.id }, function (err, todo) {
             if (err) throw err;
@@ -30,7 +30,7 @@ module.exports = function (app) {
                 idDone: req.body.isDone,
                 hasAttachement: req.body.hasAttachement }, function (err, todo) {
                     if (err) throw err;
-                    else res.send('Success');
+                    else res.send('Success', req.body.id);
                 });
 
         } else {
@@ -47,7 +47,7 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/api/todo/', function (req, res) {
+    app.delete('/api/todo', function (req, res) {
 
         Todos.findByIdAndRemove(req.body.id, function (err) {
             if (err) throw err;
