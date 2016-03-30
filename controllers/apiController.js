@@ -4,21 +4,27 @@ var bodyParser = require('body-parser');
 module.exports = function (app) {
 
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.urlencoded({extended: true}));
 
     app.get('/api/todos/:uname', function (req, res) {
 
-        Todos.find({ username: req.params.uname }, function (err, todos) {
-            if (err) throw err;
-            else res.send(todos);
+        Todos.find({username: req.params.uname}, function (err, todos) {
+            if (err) {
+                throw err;
+            } else {
+                res.send(todos);
+            }
         });
     });
 
     app.get('/api/todo/:id', function (req, res) {
 
-        Todos.findById({ _id: req.params.id }, function (err, todo) {
-            if (err) throw err;
-            else res.send(todo);
+        Todos.findById({_id: req.params.id}, function (err, todo) {
+            if (err) {
+                throw err;
+            } else {
+                res.send(todo);
+            }
         });
     });
 
@@ -28,9 +34,13 @@ module.exports = function (app) {
             Todos.findByIdAndUpdate(req.body.id, {
                 todo: req.body.todo,
                 idDone: req.body.isDone,
-                hasAttachement: req.body.hasAttachement }, function (err, todo) {
-                    if (err) throw err;
-                    else res.send('Success', req.body.id);
+                hasAttachement: req.body.hasAttachement
+            }, function (err, todo) {
+                    if (err) {
+                        throw err;
+                    } else {
+                        res.send('Success', req.body.id);
+                    }
                 });
 
         } else {
@@ -41,8 +51,11 @@ module.exports = function (app) {
                 hasAttachement: req.body.hasAttachement
             });
             newTodo.save(function (err) {
-                if (err) throw err;
-                else res.send('Success');
+                if (err) {
+                    throw err;
+                } else {
+                    res.send('Success');
+                }
             });
         }
     });
@@ -50,8 +63,11 @@ module.exports = function (app) {
     app.delete('/api/todo', function (req, res) {
 
         Todos.findByIdAndRemove(req.body.id, function (err) {
-            if (err) throw err;
-            else res.send('Success');
+            if (err) {
+                throw err;
+            } else {
+                res.send('Success');
+            }
         });
     });
 };

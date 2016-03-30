@@ -27,8 +27,11 @@ module.exports = function (app) {
         ];
 
         Todos.create(starterTodos, function (err, results) {
-            if (err) console.log('error', err);
-            else res.send(results);
+            if (err) {
+                console.log('error', err);
+            } else {
+                res.send(results);
+            }
         });
     });
 };

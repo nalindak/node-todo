@@ -4,8 +4,11 @@
   "description": "Demo Node ToDo App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "test": "mocha tests --recursive",
+    "lint": "jshint .",
+    "stylecheck": "jscs .",
+    "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec tests --recursive",
+    "prep": "npm run lint && npm run stylecheck && npm test && npm run cover"
   },
   "repository": {
     "type": "git",
@@ -19,8 +22,14 @@
   "homepage": "https://github.com/nalindak/node-todo#readme",
   "devDependencies": {
     "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "mongoose": "^4.4.8"
+    "istanbul": "^0.4.2",
+    "jscs": "^2.11.0",
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5",
+    "mongoose": "^4.4.8",
+    "sinon": "^1.17.3"
   }
 }
